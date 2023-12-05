@@ -92,8 +92,12 @@ args  : ε
 
 
 ## 12/5 完成静态部分
-### 仿照示例程序实现praser和lex
-### 
+### 实现lexer 
+accomplished
+
+------
+### 仿照示例程序实现praser
+### 实现configLoader?
 
 ## 设计完成interpreter的部分细节
 
