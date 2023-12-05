@@ -89,3 +89,12 @@ expr    : VAR | STR
 args  : ε
         | expr ' ' args
 ```
+
+
+## 12/5 完成静态部分
+### 仿照示例程序实现praser和lex
+### 
+
+## 设计完成interpreter的部分细节
+
+
