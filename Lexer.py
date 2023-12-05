@@ -24,7 +24,7 @@ class MyLexer:
         'EXIT':     'CALL'
     }
     #特殊符号类型
-    tokens=['NEWLINE','VAR','STR','INT']+list(reserved.values())
+    tokens=['NEWLINE','VAR','STR','ID']+list(reserved.values())
 
     #直译符号
     literals=['=','+']
@@ -32,7 +32,8 @@ class MyLexer:
     t_ignore_COMMENT=r'\#.*'
     # 忽视空格和制表符
     t_ignore=' \t'
-    def __int__(self,configLoader,**kwargs):
+
+    def __init__(self,configLoader,**kwargs):
         self._lexer=lex(module=self,**kwargs)
         self._f=None
         self._configLoader=configLoader
