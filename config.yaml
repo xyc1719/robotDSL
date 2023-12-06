@@ -1,13 +1,12 @@
-## config.yaml
-#runtime:
-#  user_db: "./data/random-users.py"
-#  log_level: "info"
-#
-#job:
-#  path: "./jobs/example_weather.job"
-#  halt_on_error: true
-#
-#scripts:
-#  halt_on_error: false
-#  dirs:
-#    - "./scripts/"
+# config.yaml
+runtime:
+  log_level: "info"
+
+script:
+  path: "./script/example.spt"
+  halt_on_error: true
+
+extended:
+  halt_on_error: false
+  dirs:
+    - "./extended/"
