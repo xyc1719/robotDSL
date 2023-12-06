@@ -99,6 +99,11 @@ class MyLexer:
         t.value=t.value[1:-1]
         return t
 
+    def t_INT(self,t):
+        r'0|[1-9][0-9]*'
+        t.value=int(t.value)
+        return t
+
     def t_error(self,t):
         msg = f'line {t.lexer.lineno}:unexpected symbol {t.value}'
         if self._configLoader.getJobConfig().get('halt-onerror'):
