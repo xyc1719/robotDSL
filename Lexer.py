@@ -1,6 +1,6 @@
 from ply.lex import lex
 from logging import getLogger
-from . import ConfigYamlLoader
+# from . import ConfigYamlLoader
 
 logrecord = getLogger('Interpreter')
 '''
@@ -35,7 +35,7 @@ class MyLexer:
 
     def __init__(self,configLoader,**kwargs):
         self._lexer=lex(module=self,**kwargs)
-        self._f=None
+        self._file=None
         self._configLoader=configLoader
 
     def getLexer(self):
@@ -50,13 +50,13 @@ class MyLexer:
         :param path:待分析文件路径
         :return: None
         """
-        self._f=None
-        with open(path,'r',encoding='utf-8') as f:
-            self._f=f.read()
-        if not self._f:
+        self._file=None
+        with open(path,'r',encoding='utf-8') as file:
+            self._file=file.read()
+        if not self._file:
             logrecord.error(f'Failed to load script {path}')
             return
-        self._lexer.input(self.f)
+        self._lexer.input(self._file)
         self._lexer.lineno=1
     def loadStr(self,str):
         """
@@ -64,7 +64,7 @@ class MyLexer:
         :param str: 待分析字符串
         :return:None
         """
-        self._f = str
+        self._file = str
         self._lexer.input(str)
         self._lexer.lineno = 1
 
@@ -73,7 +73,7 @@ class MyLexer:
         :return: 下一个词法分析结果
         :raises RuntimeError: 脚本文件载入失败
         """
-        if not self._f:
+        if not self._file:
             raise RuntimeError('fail to find the script.')
         return self._lexer.token()
 

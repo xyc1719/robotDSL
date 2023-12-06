@@ -96,9 +96,11 @@ args  : ε
 accomplished
 
 ------
-### 仿照示例程序实现praser
 ### 实现configLoader?
-
+设计config格式
+验证
+函数返回值
+### 仿照示例程序实现praser
 ## 设计完成interpreter的部分细节
 
 ### 得到parser的分析树
