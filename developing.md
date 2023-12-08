@@ -66,7 +66,7 @@ statement   : action
 
 action  : VAR '=' expression
         | 'speak' expression
-        | 'listen' INT , INT
+        | 'listen' expr expr
         | 'stepto' stepname
         | 'exit'
         | 'call' filename args
@@ -103,17 +103,17 @@ accomplished
 
 函数返回值
 ### 仿照示例程序实现praser
-
+accomplished without test...
 ---
-# 12/7
+# 12/9
 ## 设计完成interpreter的部分细节
 
 ### 得到parser的分析树
 ### 设计脚本应答时的数据结构和指针
-# 12/8
+# 12/9
 ### 单线程下完成分析
 ### 完成 call脚本编写和测试
-# 12/9
+# 12/10
 ## 测试和注释
 
 ## 文档

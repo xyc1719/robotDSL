@@ -59,7 +59,7 @@ class MyConfigYamlLoader:
         savedConfig.update(self._config)
         self._config=savedConfig
 
-    def validate_config(self,config):
+    def _validate(self,config):
         validator = Validator(self.schema)
         return validator.validate(config)
 
