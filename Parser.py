@@ -1,6 +1,6 @@
 from logging import getLogger
 from ply.yacc import yacc
-from ConfigYamlLoader import MyConfigYamlLoader
+from ConfigYamlLoader import MyConfigLoader
 from Lexer import MyLexer
 from ASTNode import MyASTNode
 
@@ -13,14 +13,18 @@ def parse(program):
 
 ast = parse("3 + 4 * 5")
 '''
-class Parser:
-    def __init__(self,configLoader: MyConfigYamlLoader,myLexer:MyLexer):
+class MyParser:
+    def __init__(self,configLoader: MyConfigLoader,myLexer:MyLexer):
         self._my_lexer = myLexer
         self.tokens = myLexer.tokens
         self._yacc = yacc(module=self,debug=True)
         self._configLoader=configLoader
 
     def parseScript(self,script):
+        '''
+        输入脚本字符串，返回语法生成树
+        :param script: 脚本字符串
+        '''
         return self._yacc.parse(script,self._lexer.getLexer())
 
     def p_error(self,p):
@@ -151,3 +155,10 @@ class Parser:
                     | NEWLINE
         '''
         pass
+
+if __name__=='__main__':
+    conf=MyConfigLoader()
+    conf.load('./data/default.yaml')
+    lexer=MyLexer(conf)
+    lexer.loadScript('./testdata/example.dsl')
+    parser=MyParser(conf,lexer)

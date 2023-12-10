@@ -1,6 +1,6 @@
 from ply.lex import lex
 from logging import getLogger
-# from . import ConfigYamlLoader
+from ConfigYamlLoader import MyConfigLoader
 
 logrecord = getLogger('Interpreter')
 '''
@@ -112,8 +112,8 @@ class MyLexer:
         t.lexer.skip(1)
 
 if __name__=='__main__':
-    # c= ConfigLoader('s')
-    myLexer =MyLexer("Interpreter.py")
+    c= MyConfigLoader('./testdata/default.yaml')
+    myLexer =MyLexer(c)
     myLexer.loadStr('''step stepto name endstep''')
     token=myLexer.getToken()
     while token:
