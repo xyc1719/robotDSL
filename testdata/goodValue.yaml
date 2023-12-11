@@ -1,0 +1,13 @@
+# goodValue change log_level: "info" -> "error"
+# script-halt_on_error: true ->false
+runtime:
+  log_level: "error"
+
+script:
+  path: "./script/example.dsl"
+  halt_on_error: false
+
+extended:
+  halt_on_error: false
+  dirs:
+    - "./extended/"

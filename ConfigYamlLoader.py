@@ -17,7 +17,7 @@ class MyConfigLoader:
                 'halt_on_error': {'type': 'boolean'}
             }
         },
-        'extended_script': {
+        'extended': {
             'type': 'dict',
             'schema': {
                 'halt_on_error': {'type': 'boolean'},
@@ -50,11 +50,11 @@ class MyConfigLoader:
         '''
         return self._config.get('script')
 
-    def getExtendConfig(self):
+    def getExtendedConfig(self):
         '''
-        获取extend部分配置
+        获取extended部分配置
         '''
-        return self._config.get('extend')
+        return self._config.get('extended')
 
     def load(self,path='./default.yaml',encoding='utf-8'):
         '''

@@ -1,4 +1,4 @@
-# default.yaml
+# missing extended->dirs
 runtime:
   log_level: "info"
 
@@ -8,5 +8,3 @@ script:
 
 extended:
   halt_on_error: false
-  dirs:
-    - "./extended/"

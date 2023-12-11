@@ -1,6 +1,6 @@
-# default.yaml
+# wrongValueType in log_level,str ->int
 runtime:
-  log_level: "info"
+  log_level: 10
 
 script:
   path: "./script/example.dsl"

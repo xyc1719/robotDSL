@@ -28,7 +28,7 @@ class MyParser:
         输入脚本字符串，返回语法生成树
         :param script: 脚本字符串
         '''
-        return self._yacc.parse(script,self._lexer.getLexer())
+        return self._yacc.parse(script,self._my_lexer.getLexer())
 
     def p_error(self,p):
         if(self._configLoader.getScriptConfig()['halt-onerror']):
@@ -43,7 +43,7 @@ class MyParser:
         if(len(p)==2):
             p[0]=MyASTNode("Root")
         else:
-            p[0]=MyASTNode("Root",p[2],*p[3])
+            p[0]=MyASTNode("Root",p[2],*p[3].childs)
 
     def p_stepblock(self,p):
         '''
