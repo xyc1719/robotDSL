@@ -113,22 +113,23 @@ accomplished and tessted....
 ## 设计完成interpreter的部分细节
 
 检验脚本是否合法
-
+accomplished...
 实现主要关键字
 accomplished...
 
 保存执行顺序和全局变量（没有局部变量）
-varTable accomplished
-exec
+varTable accomplished...
+exec order accomplished...
 
+### 得到parser的分析树
+### 设计脚本应答时的数据结构和指针
+---
 调用extended中python脚本
 
 - 规范接口
 - 解析脚本
 - 传递参数
 - 返回参数
-### 得到parser的分析树
-### 设计脚本应答时的数据结构和指针
 # 12/12
 ### 单线程下完成分析
 ### 完成 call脚本编写和测试
