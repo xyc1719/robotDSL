@@ -14,6 +14,9 @@ def parse(program):
 ast = parse("3 + 4 * 5")
 '''
 class MyParser:
+    '''
+    Myparser:基于MyLexer和MYASTNode的语法分析器
+    '''
     def __init__(self,configLoader: MyConfigLoader,myLexer:MyLexer):
         self._my_lexer = myLexer
         self.tokens = myLexer.tokens
@@ -74,6 +77,8 @@ class MyParser:
         '''
         if(len(p)==4 and p[2]=='='):
             p[0]=MyASTNode(['statement','assign',p[1]],p[3])
+        elif len(p)==2:
+            p[0]=MyASTNode(('statement',p[1]),)
         else:
             p[0]=MyASTNode(('statement',p[1]),*p[2:])
 

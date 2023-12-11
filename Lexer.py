@@ -18,10 +18,11 @@ class MyLexer:
         'case':     'CASE',
         'default':  'DEFAULT',
         'endswitch':'ENDSWITCH',
-        'welcome':  'WELCOME',
+        # 'welcome':  'WELCOME',
         'speak':    'SPEAK',
         'listen':   'LISTEN',
-        'EXIT':     'CALL'
+        'exit':     'EXIT',
+        'call':     'CALL'
     }
     #特殊符号类型
     tokens=['NEWLINE','VAR','STR','ID']+list(reserved.values())
