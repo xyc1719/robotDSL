@@ -103,18 +103,37 @@ accomplished
 
 函数返回值
 ### 仿照示例程序实现praser
-accomplished without test...
+accomplished and tessted....
+静态设计部分已完成
+测试脚本框架已实现
+缺少测试用extended的python脚本
+缺少完整的强dsl脚本
 ---
-# 12/9
+# 12/11
 ## 设计完成interpreter的部分细节
 
+检验脚本是否合法
+
+实现主要关键字
+accomplished...
+
+保存执行顺序和全局变量（没有局部变量）
+varTable accomplished
+exec
+
+调用extended中python脚本
+
+- 规范接口
+- 解析脚本
+- 传递参数
+- 返回参数
 ### 得到parser的分析树
 ### 设计脚本应答时的数据结构和指针
-# 12/9
+# 12/12
 ### 单线程下完成分析
 ### 完成 call脚本编写和测试
-# 12/10
+# 12/13
 ## 测试和注释
 
 ## 文档
-### 记号的说明只有文法，没有脚本的编写规范
+### 记号的说明只有文法，缺少面向用户的说明，缺少脚本的编写规范

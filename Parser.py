@@ -15,7 +15,7 @@ ast = parse("3 + 4 * 5")
 '''
 class MyParser:
     '''
-    Myparser:基于MyLexer和MYASTNode的语法分析器
+    Myparser:基于MyLexer和MyASTNode的语法分析器
     '''
     def __init__(self,configLoader: MyConfigLoader,myLexer:MyLexer):
         self._my_lexer = myLexer
@@ -70,10 +70,10 @@ class MyParser:
         '''
         action  : VAR '=' expression
                 | SPEAK expression
-                | LISTEN expr expr
-                | STEPTO ID
+                | LISTEN expression
+                | STEPTO id
                 | EXIT
-                | CALL ID args
+                | CALL id args
         '''
         if(len(p)==4 and p[2]=='='):
             p[0]=MyASTNode(['statement','assign',p[1]],p[3])
@@ -81,6 +81,13 @@ class MyParser:
             p[0]=MyASTNode(('statement',p[1]),)
         else:
             p[0]=MyASTNode(('statement',p[1]),*p[2:])
+
+
+    def p_id(self, p):
+        '''
+        id : ID
+        '''
+        p[0] = MyASTNode(('id', p[1]))
 
     def p_switch_case(self,p):
         '''
@@ -99,8 +106,7 @@ class MyParser:
         elif len(p)==4:
             p[0]=[p[2]]+p[3]
         else :
-            #reduce
-            pass
+            p[0]=[p[2]]
 
     def p_case(self,p):
         '''

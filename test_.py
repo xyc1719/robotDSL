@@ -60,8 +60,7 @@ class MyConfigLoaderTest:
         self.test_wrongValueType()
         self.test_goodValue()
         if self.testflag==False:
-            print("Error in MyConfigLoaderTest...")
-            exit(5)
+            raise RuntimeError("Error in MyConfigLoaderTest...")
 
 class MyLexerTest:
     '''
