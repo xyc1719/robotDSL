@@ -1,0 +1,12 @@
+# strongTest.yaml
+runtime:
+  log_level: "info"
+
+script:
+  path: "./testdata/strongTest.dsl"
+  halt_on_error: true
+
+extended:
+  halt_on_error: true
+  dirs:
+    - "./extended/"

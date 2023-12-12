@@ -31,9 +31,9 @@ class MyParser:
         return self._yacc.parse(script,self._my_lexer.getLexer())
 
     def p_error(self,p):
-        if(self._configLoader.getScriptConfig()['halt-onerror']):
-            raise RuntimeError(f"SyntaxError on line{self._my_lexer.getLexer().lineno}, unexpected syntax: {p}")
-        logrecord.error(f"SyntaxError on line{self._my_lexer.getLexer().lineno}, unexpected syntax: {p}")
+        if(self._configLoader.getScriptConfig()['halt_on_error']):
+            raise RuntimeError(f"SyntaxError on line {self._my_lexer.getLexer().lineno}, unexpected syntax: {p}")
+        logrecord.error(f"SyntaxError on line {self._my_lexer.getLexer().lineno}, unexpected syntax: {p}")
 
     def p_script(self,p):
         '''

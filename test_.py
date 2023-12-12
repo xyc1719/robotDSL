@@ -2,6 +2,8 @@ from ConfigYamlLoader import MyConfigLoader
 from Lexer import MyLexer
 from Parser import MyParser
 from ASTNode import MyASTNode
+from Interpreter import MyInterpreter
+from FuncVar import MyFuncVar
 import yaml
 
 goodconf=MyConfigLoader()
@@ -60,7 +62,7 @@ class MyConfigLoaderTest:
         self.test_wrongValueType()
         self.test_goodValue()
         if self.testflag==False:
-            raise RuntimeError("Error in MyConfigLoaderTest...")
+            raise RuntimeError('Test failed in MyConfigLoaderTest...')
 
 class MyLexerTest:
     '''
@@ -115,7 +117,58 @@ class MyParserTest:
     def test_list(self):
         self.test_example()
 
+class MyFuncVarTest:
+    '''
+    MyFuncVar类的测试桩
+    '''
 
+    def test_varTable(self):
+        config=goodconf
+        funcVar=MyFuncVar('007',config)
+        funcVar.assign('variable1',123457)
+        funcVar.assign('variable0','aksdjlfsd')
+        if funcVar.getVar('variable1')!='123457':
+            return False
+        elif funcVar.getVar('variable0')!='aksdjlfsd':
+            return False
+        else:
+            return True
+    def test_list(self):
+        if not self.test_varTable():
+            raise RuntimeError('Test failed in MyFuncVarTest...')
+        else:
+            pass
+
+class MyInterpreterTest:
+    '''
+    MyInterpreter类的测试桩
+    '''
+
+    def test_goodDSL(self):
+        '''
+        自动检测
+        '''
+        config=goodconf
+        funcVar=MyFuncVar('008',config)
+        interpreter=MyInterpreter(config)
+        interpreter.loadFuncVar(funcVar)
+        interpreter.run()
+
+    def test_strongDSL(self):
+        '''
+        存在手动输入过程
+        '''
+        config=MyConfigLoader()
+        config.load('./testdata/strongTest.yaml')
+        funcVar=MyFuncVar('009',config)
+        interpreter=MyInterpreter(config)
+        interpreter.loadFuncVar(funcVar)
+        interpreter.run()
+
+    def test_list(self):
+        self.test_goodDSL()
+        print('-----------')
+        self.test_strongDSL()
 
 if __name__=='__main__':
     print('Test for MYConfigLoader...')
@@ -132,4 +185,16 @@ if __name__=='__main__':
     print("----------------------------")
     test=MyParserTest()
     test.test_list()
+    print("----------------------------")
+    print('Test for MyFuncVar...')
+    print("----------------------------")
+    test=MyFuncVarTest()
+    test.test_list()
+    print('Test passed....')
+    print("----------------------------")
+    print('Test for MyInterpreter...')
+    print("----------------------------")
+    test=MyInterpreterTest()
+    test.test_list()
+    print('Test passed....')
     print("----------------------------")

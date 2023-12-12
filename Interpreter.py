@@ -2,7 +2,7 @@ from ConfigYamlLoader import MyConfigLoader
 from Lexer import MyLexer
 from Parser import MyParser
 from ASTNode import MyASTNode
-from RunningConfig import MyRunningConfig
+from FuncVar import MyFuncVar
 from logging import getLogger
 
 logrecord=getLogger('Interpreter')
@@ -22,17 +22,18 @@ class MyInterpreter:
         self._loadScript()
         self._getastTree()
 
-    def loadRunningConfig(self,runningConfig:MyRunningConfig):
+    def loadFuncVar(self,funcVar:MyFuncVar):
         self._stop=False
-        self.runningConfig=runningConfig
+        self.funcVar=funcVar
 
     def run(self):
-        if not self.runningConfig or not self.astTree:
+        if not self.funcVar or not self.astTree:
             raise RuntimeError('Load Script and RunningConfig before running...')
         logrecord.info('Begin running...')
-        if 'Main' not in self.steps.keys():
-            raise RuntimeError('step Main not be defined...')
-        self._runStep(self.steps['Main'])
+        if 'main' not in self.steps:
+            print(self.steps.keys())
+            raise RuntimeError('step main not be defined...')
+        self._runStep(self.steps['main'])
 
     def _runStep(self,step:MyASTNode):
         for statement in step.childs:
@@ -43,23 +44,23 @@ class MyInterpreter:
         if not step:
             raise RuntimeError(f'Step {stepID} not be defined...')
         return step
+
     def _execute(self,statement:MyASTNode):
         if self._stop:
             return
         if statement.type[0]!='statement':
             logrecord.error('statement not found...')
         elif statement.type[1]=='assign':
-            self.runningConfig.assign(statement.type[2],\
-                                      self._getVal(statement.childs[0]))
+            self.funcVar.assign(statement.type[2],self._getVal(statement.childs[0]))
         elif statement.type[1]=='speak':
-            self.runningConfig.speak(self._getVal(statement.childs[0]))
+            self.funcVar.speak(self._getVal(statement.childs[0]))
         elif statement.type[1]=='listen':
-            self.runningConfig.listen(self._getVal(statement.childs[0]))
+            self.funcVar.listen(self._getVal(statement.childs[0]))
         elif statement.type[1]=='stepto':
             self._runStep(self._getStep(statement.childs[0].type[1]))
         elif statement.type[1]=='exit':
             self._stop=True
-            self.runningConfig.exit()
+            self.funcVar.exit()
         elif statement.type[1]=='call':
             pass
         elif statement.type[1]=='switch':
@@ -67,7 +68,7 @@ class MyInterpreter:
 
 
     def _switchCase(self,statement:MyASTNode):
-        condition=self.runningConfig.getVar(statement.type[2])
+        condition=self.funcVar.getVar(statement.type[2])
         cases=[child.type[1] for child in statement.childs if child.type[0]=='case']
         default=statement.childs[-1] if statement.childs[-1].type[0] == 'default' else None
         pointer=-1
@@ -82,10 +83,10 @@ class MyInterpreter:
 
     def _getVal(self,expression:MyASTNode):
         if expression.type[0]=='var':
-            return self.runningConfig.getVar(expression.type[1])
+            return self.funcVar.getVar(expression.type[1])
         elif expression.type[0]=='str':
             return expression.type[1]
-        elif expression.type=='expression':
+        elif expression.type[0]=='expression':
             strValue=''
             for expr in expression.childs:
                 strValue=strValue+self._getVal(expr)

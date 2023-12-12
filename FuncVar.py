@@ -3,9 +3,9 @@ import inputimeout
 
 from ConfigYamlLoader import MyConfigLoader
 
-logrecord=getLogger('RunningConfig')
+logrecord=getLogger('FuncVar')
 
-class MyRunningConfig:
+class MyFuncVar:
 
     varTable={
         'inputBuffer':'',
@@ -14,7 +14,7 @@ class MyRunningConfig:
     def __init__(self,robotID,configLoader:MyConfigLoader):
         logrecord.info('Initializing Running Environment...')
         self._config=configLoader
-        self.varTable['_robotID']=robotID
+        self.varTable['_robotID']=str(robotID)
 
     def assign(self,var,value):
         '''
@@ -23,6 +23,16 @@ class MyRunningConfig:
         :param value:变量值，赋值后自动变为字符串
         '''
         self.varTable[var]=str(value)
+
+    def getVar(self,var):
+        '''
+        从变量表中得到变量值
+        :param var: 变量名
+        :return:变量值，类型为字符串
+        '''
+        if var not in self.varTable.keys():
+            self.varTable[var]=''
+        return self.varTable[var]
 
     def speak(self,sentence):
         '''
@@ -46,15 +56,6 @@ class MyRunningConfig:
             logrecord.info('User Speak timeout...')
         self.assign('inputBuffer', inputBuffer)
 
-    def getVar(self,var):
-        '''
-        从变量表中得到变量值
-        :param var: 变量名
-        :return:变量值，类型为字符串
-        '''
-        if var not in self.varTable.keys():
-            self.varTable[var]=''
-        return self.varTable[var]
     def exit(self):
         '''
         退出指令，主程序在运行侧退出
