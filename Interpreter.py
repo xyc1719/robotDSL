@@ -3,6 +3,7 @@ from Lexer import MyLexer
 from Parser import MyParser
 from ASTNode import MyASTNode
 from FuncVar import MyFuncVar
+import importlib
 from logging import getLogger
 
 logrecord=getLogger('Interpreter')
@@ -13,11 +14,13 @@ class MyInterpreter:
     astTree=None
     steps={}
     _stop=False
+    _module=None
 
     def __init__(self,configLoader:MyConfigLoader):
         self._config=configLoader
         self._lexer=MyLexer(configLoader)
         self._parser=MyParser(self._config,self._lexer)
+        self._module=importlib.import_module(self._config.getExtendedConfig()['dirs'][0])
 
         self._loadScript()
         self._getastTree()
@@ -62,9 +65,23 @@ class MyInterpreter:
             self._stop=True
             self.funcVar.exit()
         elif statement.type[1]=='call':
-            pass
+            self._callFunction(statement.childs[0].type[1],self._getArgs(statement.childs[1]))
         elif statement.type[1]=='switch':
             self._switchCase(statement)
+
+    def _getArgs(self,args:MyASTNode):
+        arg_list=[]
+        for child in args.childs:
+            arg_list.append(self._getVal(child))
+        return arg_list
+
+    def _callFunction(self,funcName,args):
+        func = getattr(self._module,funcName,None)
+
+        if func and callable(func):
+            self.funcVar.assign('ret',func(*args))
+        else:
+            raise RuntimeError(f"Function {funcName} not found in {self._config.getExtendedConfig()['dirs'][0]}")
 
 
     def _switchCase(self,statement:MyASTNode):

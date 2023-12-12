@@ -3,10 +3,10 @@ runtime:
   log_level: "info"
 
 script:
-  path: "./script/example.dsl"
+  path: "./script/example2.dsl"
   halt_on_error: true
 
 extended:
   halt_on_error: false
   dirs:
-    - "./extended/"
+    - "extended.Extended"

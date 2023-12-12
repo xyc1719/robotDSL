@@ -148,7 +148,8 @@ class MyInterpreterTest:
         '''
         自动检测
         '''
-        config=goodconf
+        config=MyConfigLoader()
+        config.load('./testdata/default.yaml')
         funcVar=MyFuncVar('008',config)
         interpreter=MyInterpreter(config)
         interpreter.loadFuncVar(funcVar)

@@ -9,4 +9,4 @@ script:
 extended:
   halt_on_error: true
   dirs:
-    - "./extended/"
+    - "extended.Extended"

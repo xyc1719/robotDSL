@@ -9,6 +9,7 @@ step main
     case 'exit' exit
     case '查询今日天气' stepto weather
     case 'weather' stepto weather
+    case '' speak '输入超时'
     default speak '很抱歉暂无此功能'
     endswitch
 endstep
@@ -26,6 +27,7 @@ step phonenumberquery
     case '张三' speak '张三的电话号码是   ' + $zhangsan
     case '李四' speak '李四的电话号码是   ' + $lisi
     case '郭栩源' speak $gxy
+    case '' speak '输入超时'
     default speak '抱歉，查无此人'
     endswitch
 endstep

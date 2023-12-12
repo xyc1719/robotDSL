@@ -124,17 +124,30 @@ exec order accomplished...
 ### 得到parser的分析树
 ### 设计脚本应答时的数据结构和指针
 ---
+# 12/12
+### 单线程下完成分析
+accomplished...
+### 完成 call脚本编写和测试
 调用extended中python脚本
 
 - 规范接口
+  - 通过yaml文件录入扩展函数所在文件夹。
+  - call funcName args* 为在脚本中的输入格式
+  - 要求输入的参数均为字符串，
+  - 输出也为字符串，存放在$ret中
+  - 需要新增扩展函数时，向extended中Exteded.py内写入新函数即可，注意输入输出规范
+  - 也支持使用新的python文件，但需要修改yaml的路径值
+  - 当检查到pyhon文件内不含有call调用的函数时，会报告函数缺失错误
 - 解析脚本
+  - importlib读入python文件，在运行时检查调用是否合法
 - 传递参数
+  - funcName *args
 - 返回参数
-# 12/12
-### 单线程下完成分析
-### 完成 call脚本编写和测试
+  - $ret
+
+accomplished...
 # 12/13
 ## 测试和注释
-
+自动化测试脚本，特别是dsl部分
 ## 文档
 ### 记号的说明只有文法，缺少面向用户的说明，缺少脚本的编写规范

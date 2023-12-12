@@ -3,6 +3,9 @@ import logging
 
 #启动时欢迎界面,ascii艺术
 def greeting():
+    '''
+    启动界面
+    '''
     picture='''
 ****   ***  *****  ***  ***** ****    ***  *     
 *   * *   * *   * *   *   *   *   *  *     *     
@@ -12,5 +15,16 @@ def greeting():
 '''
     print(picture)
 
+def initializing():
+    config=Interpreter.MyConfigLoader()
+    config.load('./config.yaml')
+    funcVar=Interpreter.MyFuncVar('007',config)
+    global interpreter
+    interpreter=Interpreter.MyInterpreter(config)
+    interpreter.loadFuncVar(funcVar)
+
 if __name__=="__main__":
     greeting()
+    initializing()
+    while not interpreter._stop:
+        interpreter.run()
