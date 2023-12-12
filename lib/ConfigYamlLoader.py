@@ -2,7 +2,9 @@ import yaml
 from cerberus import Validator
 
 class MyConfigLoader:
-    # 定义schema
+    '''
+    提供 载入分析yaml格式配置文件 的类
+    '''
     schema = {
         'runtime': {
             'type': 'dict',

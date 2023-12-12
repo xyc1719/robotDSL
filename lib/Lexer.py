@@ -106,13 +106,3 @@ class MyLexer:
             raise RuntimeError(msg)
         logrecord.error(msg)
         t.lexer.skip(1)
-
-if __name__=='__main__':
-    c= MyConfigLoader()
-    c.load('./testdata/strongTest.yaml')
-    myLexer =MyLexer(c)
-    myLexer.loadScript(c.getScriptConfig()['path'])
-    token=myLexer.getToken()
-    while token:
-        print(token)
-        token=myLexer.getToken()

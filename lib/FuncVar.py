@@ -11,10 +11,11 @@ class MyFuncVar:
         'inputBuffer':'',
         '_robotID':''
     }
-    def __init__(self,robotID,configLoader:MyConfigLoader):
+    def __init__(self,robotID,configLoader:MyConfigLoader,timeout=True):
         logrecord.info('Initializing Running Environment...')
         self._config=configLoader
         self.varTable['_robotID']=str(robotID)
+        self._timeout=timeout
 
     def assign(self,var,value):
         '''
@@ -42,18 +43,22 @@ class MyFuncVar:
         '''
         print(f'''Robot {self.getVar('_robotID')} SPEAK >> {sentence}''')
 
-    def listen(self,limitedTime):
+    def listen(self,limitedTime='30'):
         '''
         等待用户输入，并限制输入时间
         输入结果存入 inputBuffer
         :param limitedTime: 最大输入时间，单位为秒
         '''
-        print(f'Please speak within {limitedTime} seconds...')
-        try:
-            inputBuffer=inputimeout.inputimeout(prompt='SPEAK << ',timeout=int(limitedTime))
-        except inputimeout.TimeoutOccurred:
-            inputBuffer=''
-            logrecord.info('User Speak timeout...')
+        if self._timeout:
+            print(f'Please speak within {limitedTime} seconds...')
+            try:
+                inputBuffer=inputimeout.inputimeout(prompt='SPEAK << ',timeout=int(limitedTime))
+            except inputimeout.TimeoutOccurred:
+                inputBuffer=''
+                logrecord.info('User Speak timeout...')
+        else:
+            print('Please speak...')
+            inputBuffer=input()
         self.assign('inputBuffer', inputBuffer)
 
     def exit(self):
@@ -61,4 +66,4 @@ class MyFuncVar:
         退出指令，主程序在运行侧退出
         记录退出信息
         '''
-        logrecord.info(f'''Robot {self.getVar('_robotID')}exits....''')
+        logrecord.info(f'''Robot {self.getVar('_robotID')} exits....''')

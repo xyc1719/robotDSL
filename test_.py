@@ -4,6 +4,7 @@ from lib.Parser import MyParser
 from lib.Interpreter import MyInterpreter
 from lib.FuncVar import MyFuncVar
 import yaml
+import sys
 
 goodconf=MyConfigLoader()
 goodconf.load('./testdata/default.yaml')
@@ -94,7 +95,9 @@ class MyLexerTest:
 
     def test_list(self):
         print(self.test_getToken('''step stepto name endstep'''))
+        print('-----------')
         print(self.test_getToken('''afsfd reserved exit call switch cases'''))
+        print('-----------')
         print(self.test_loadScript())
 
 class MyParserTest:
@@ -149,28 +152,51 @@ class MyInterpreterTest:
         '''
         config=MyConfigLoader()
         config.load('./testdata/default.yaml')
-        funcVar=MyFuncVar('008',config)
+        funcVar=MyFuncVar('test1',config)
         interpreter=MyInterpreter(config)
-        interpreter.loadFuncVar(funcVar)
+        interpreter.reset(funcVar)
         interpreter.run()
 
-    def test_strongDSL(self):
+    def test_strongDSL(self,manual=False):
         '''
         存在手动输入过程
         '''
         config=MyConfigLoader()
         config.load('./testdata/strongTest.yaml')
-        funcVar=MyFuncVar('009',config)
+        funcVar=MyFuncVar('test2',config,timeout=manual)
         interpreter=MyInterpreter(config)
-        interpreter.loadFuncVar(funcVar)
-        interpreter.run()
+        interpreter.restart(funcVar)
+        # while interpreter.getStatus():
+        if not manual:
+            print('auto mode')
+            sys.stdin=open('./testdata/in.txt','r',encoding='utf-8')
+            sys.stdout=open('./testdata/tempout.txt','w',encoding='utf-8')
+            interpreter.run()
+            sys.stdout=sys.__stdout__
+            with open('./testdata/tempout.txt','r',encoding='utf-8') as file:
+                tempout=file.read()
+            with open('./testdata/out.txt','r',encoding='utf-8')as file:
+                answer=file.read()
+            if tempout==answer:
+                pass
+            else:
+                print(tempout)
+                print(answer)
+                raise RuntimeError('Test failed in MyInterpreter...')
+        else:
+            print('manual mode')
+            interpreter.run()
 
-    def test_list(self):
+    def test_list(self,manual=False):
         self.test_goodDSL()
         print('-----------')
-        self.test_strongDSL()
+        self.test_strongDSL(manual)
 
 if __name__=='__main__':
+    '''
+    通过manual控制最后一部分测试是否手动
+    '''
+    manual=False
     print('Test for MYConfigLoader...')
     print("----------------------------")
     test=MyConfigLoaderTest()
@@ -195,6 +221,6 @@ if __name__=='__main__':
     print('Test for MyInterpreter...')
     print("----------------------------")
     test=MyInterpreterTest()
-    test.test_list()
+    test.test_list(manual)
     print('Test passed....')
     print("----------------------------")

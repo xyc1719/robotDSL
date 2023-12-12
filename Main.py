@@ -23,12 +23,12 @@ def initializing():
     config= Interpreter.MyConfigLoader()
     config.load('./config.yaml')
     funcVar= Interpreter.MyFuncVar('007', config)
-    global interpreter
     interpreter= Interpreter.MyInterpreter(config)
-    interpreter.loadFuncVar(funcVar)
+    interpreter.reset(funcVar)
+    return interpreter
 
 if __name__=="__main__":
     greeting()
-    initializing()
-    while not interpreter._stop:
+    interpreter=initializing()
+    while interpreter.getStatus():
         interpreter.run()

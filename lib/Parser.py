@@ -166,10 +166,3 @@ class MyParser:
                     | NEWLINE
         '''
         pass
-
-if __name__=='__main__':
-    conf=MyConfigLoader()
-    conf.load('./data/default.yaml')
-    lexer=MyLexer(conf)
-    lexer.loadScript('./testdata/example.dsl')
-    parser=MyParser(conf,lexer)

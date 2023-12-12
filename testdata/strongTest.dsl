@@ -9,6 +9,7 @@ step main
     case 'exit' exit
     case '查询今日天气' stepto weather
     case 'weather' stepto weather
+    case '' speak '糟糕，无输入'
     default speak '很抱歉暂无此功能'
     endswitch
 endstep
