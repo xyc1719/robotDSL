@@ -73,7 +73,7 @@ class MyConfigLoader:
         '''
         缺省部分用默认配置补全
         '''
-        with open('./data/default.yaml','r',encoding='utf-8') as file:
+        with open('./data/default.yaml', 'r', encoding='utf-8') as file:
             defaultConfig = yaml.safe_load(file)
         defaultConfig.update(self._config)
         self._config=defaultConfig

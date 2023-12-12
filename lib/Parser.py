@@ -1,8 +1,8 @@
 from logging import getLogger
 from ply.yacc import yacc
-from ConfigYamlLoader import MyConfigLoader
-from Lexer import MyLexer
-from ASTNode import MyASTNode
+from lib.Lexer import MyLexer
+from lib.ConfigYamlLoader import MyConfigLoader
+from lib.ASTNode import MyASTNode
 
 logrecord = getLogger('Interpreter')
 

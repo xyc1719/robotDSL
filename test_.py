@@ -1,9 +1,8 @@
-from ConfigYamlLoader import MyConfigLoader
-from Lexer import MyLexer
-from Parser import MyParser
-from ASTNode import MyASTNode
-from Interpreter import MyInterpreter
-from FuncVar import MyFuncVar
+from lib.ConfigYamlLoader import MyConfigLoader
+from lib.Lexer import MyLexer
+from lib.Parser import MyParser
+from lib.Interpreter import MyInterpreter
+from lib.FuncVar import MyFuncVar
 import yaml
 
 goodconf=MyConfigLoader()
@@ -19,7 +18,7 @@ class MyConfigLoaderTest:
         lexer=MyLexer(conf)
         lexer.loadScript('./testdata/example.dsl')
         parser=MyParser(conf, lexer)
-        with open('./testdata/example.dsl','r',encoding='utf-8') as file :
+        with open('testdata/example.dsl', 'r', encoding='utf-8') as file :
             tree = parser.parseScript(file.read())
             tree.printTree()
 
@@ -46,7 +45,7 @@ class MyConfigLoaderTest:
     def test_goodValue(self):
         conf = MyConfigLoader()
         conf.load('./testdata/goodValue.yaml')
-        with open('./testdata/goodValue.yaml','r',encoding='utf-8')as file:
+        with open('testdata/goodValue.yaml', 'r', encoding='utf-8')as file:
             directload=yaml.safe_load(file)
         if directload==conf._config:
             print('Loaded correctly from goodValue...')
@@ -103,8 +102,8 @@ class MyParserTest:
     MyParser类的测试桩
     '''
     def test_example(self):
-        path_yaml='./testdata/default.yaml'
-        path_dsl='./testdata/example.dsl'
+        path_yaml= 'testdata/default.yaml'
+        path_dsl= 'testdata/example.dsl'
         config=MyConfigLoader()
         config.load(path_yaml)
         lexer=MyLexer(config)

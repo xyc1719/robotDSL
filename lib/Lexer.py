@@ -1,6 +1,6 @@
 from ply.lex import lex
 from logging import getLogger
-from ConfigYamlLoader import MyConfigLoader
+from lib.ConfigYamlLoader import MyConfigLoader
 
 logrecord = getLogger('Interpreter')
 '''

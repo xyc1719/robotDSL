@@ -1,4 +1,4 @@
-import Interpreter
+from lib import Interpreter
 import logging
 
 logging.basicConfig(
@@ -20,11 +20,11 @@ def greeting():
     print(picture)
 
 def initializing():
-    config=Interpreter.MyConfigLoader()
+    config= Interpreter.MyConfigLoader()
     config.load('./config.yaml')
-    funcVar=Interpreter.MyFuncVar('007',config)
+    funcVar= Interpreter.MyFuncVar('007', config)
     global interpreter
-    interpreter=Interpreter.MyInterpreter(config)
+    interpreter= Interpreter.MyInterpreter(config)
     interpreter.loadFuncVar(funcVar)
 
 if __name__=="__main__":

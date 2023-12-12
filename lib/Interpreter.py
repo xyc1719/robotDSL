@@ -1,8 +1,8 @@
-from ConfigYamlLoader import MyConfigLoader
-from Lexer import MyLexer
-from Parser import MyParser
-from ASTNode import MyASTNode
-from FuncVar import MyFuncVar
+from lib.ConfigYamlLoader import MyConfigLoader
+from lib.Lexer import MyLexer
+from lib.Parser import MyParser
+from lib.ASTNode import MyASTNode
+from lib.FuncVar import MyFuncVar
 import importlib
 from logging import getLogger
 

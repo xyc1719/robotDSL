@@ -1,7 +1,7 @@
 from logging import getLogger
 import inputimeout
 
-from ConfigYamlLoader import MyConfigLoader
+from lib.ConfigYamlLoader import MyConfigLoader
 
 logrecord=getLogger('FuncVar')
 
