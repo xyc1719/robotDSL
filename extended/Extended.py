@@ -8,6 +8,15 @@ import requests
 def add(x, y):
     return str(int(x)+int(y))
 
+def minus(x,y):
+    return str(int(x)-int(y))
+
+def multiply(x,y):
+    return str(int(x)*int(y))
+
+def div(x,y):
+    return str(int(x)//int(y))
+
 def weather(location):
     response=requests.get(f'https://wttr.in/{location}')
     if response.status_code==404:

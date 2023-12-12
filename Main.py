@@ -1,6 +1,10 @@
 import Interpreter
 import logging
 
+logging.basicConfig(
+    level=logging.DEBUG,
+    format='%(levelname)s: [%(name)s] %(message)s'
+)
 #启动时欢迎界面,ascii艺术
 def greeting():
     '''
