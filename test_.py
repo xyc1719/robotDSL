@@ -20,7 +20,7 @@ class MyConfigLoaderTest:
     '''
     MyConfigLoader类的测试桩
     '''
-    def test_parseScript(self):
+    def testParseScript(self):
         '''
         测试简单DSL脚本能否进行静态分析
         可行性检测
@@ -35,7 +35,7 @@ class MyConfigLoaderTest:
             tree = parser.parseScript(file.read())
             tree.printTree()
 
-    def test_missingKey(self):
+    def testMissingKey(self):
         '''
         配置文件缺省项测试
         用默认配置补充缺省项
@@ -49,7 +49,7 @@ class MyConfigLoaderTest:
         else:
             print('fixed by default.yaml in missingKey...')
 
-    def test_wrongValueType(self):
+    def testWrongValueType(self):
         '''
         配置文件填写有误
         启用默认配置
@@ -63,7 +63,7 @@ class MyConfigLoaderTest:
         else:
             print('fixed by default.yaml in wrongValueType...')
 
-    def test_goodValue(self):
+    def testGoodValue(self):
         '''
         另一个正确的配置文件
         要求读入校验后内容不发生修改
@@ -80,12 +80,12 @@ class MyConfigLoaderTest:
             print(conf._config)
             self.testflag=False
 
-    def test_list(self):
+    def testList(self):
         self.testflag=True
-        self.test_parseScript()
-        self.test_missingKey()
-        self.test_wrongValueType()
-        self.test_goodValue()
+        self.testParseScript()
+        self.testMissingKey()
+        self.testWrongValueType()
+        self.testGoodValue()
         if self.testflag==False:
             raise RuntimeError('Test failed in MyConfigLoaderTest...')
 
@@ -93,7 +93,7 @@ class MyLexerTest:
     '''
     MyLexer类的测试桩
     '''
-    def test_getToken(self,str):
+    def testGetToken(self,str):
         '''
         字符串输入的词法分析测试
         可行性检测
@@ -111,7 +111,7 @@ class MyLexerTest:
             token=lexer.getToken()
         return tokens
 
-    def test_loadScript(self,path='./testdata/example.dsl'):
+    def testLoadScript(self,path='./testdata/example.dsl'):
         '''
         文本输入的词法分析测试
         :param path: 测试脚本地址
@@ -128,18 +128,18 @@ class MyLexerTest:
         return tokens
 
 
-    def test_list(self):
-        print(self.test_getToken('''step stepto name endstep'''))
+    def testList(self):
+        print(self.testGetToken('''step stepto name endstep'''))
         print('-----------')
-        print(self.test_getToken('''afsfd reserved exit call switch cases'''))
+        print(self.testGetToken('''afsfd reserved exit call switch cases'''))
         print('-----------')
-        print(self.test_loadScript())
+        print(self.testLoadScript())
 
 class MyParserTest:
     '''
     MyParser类的测试桩
     '''
-    def test_example(self):
+    def testExample(self):
         '''
         静态部分分析树测试桩
         可行性测试
@@ -156,15 +156,35 @@ class MyParserTest:
             tree=parser.parseScript(file.read())
             tree.printTree()
 
-    def test_list(self):
-        self.test_example()
+    def testStrongTest(self):
+        '''
+        静态部分分析树测试桩
+        可行性测试
+        正确性测试在执行时检测
+        '''
+        path_yaml= 'testdata/strongTest.yaml'
+        path_dsl= 'testdata/strongTest.dsl'
+
+        config=MyConfigLoader()
+        config.load(path_yaml)
+        lexer=MyLexer(config)
+        lexer.loadScript(path_dsl)
+        parser=MyParser(config,lexer)
+        with open(path_dsl,'r',encoding='utf-8')as file:
+            tree=parser.parseScript(file.read())
+            tree.printTree()
+
+    def testList(self):
+        self.testExample()
+        print('------')
+        self.testStrongTest()
 
 class MyFuncVarTest:
     '''
     MyFuncVar类的测试桩
     '''
 
-    def test_varTable(self):
+    def testVarTable(self):
         '''
         符号表测试
         '''
@@ -178,8 +198,8 @@ class MyFuncVarTest:
             return False
         else:
             return True
-    def test_list(self):
-        if not self.test_varTable():
+    def testList(self):
+        if not self.testVarTable():
             raise RuntimeError('Test failed in MyFuncVarTest...')
         else:
             pass
@@ -189,7 +209,7 @@ class MyInterpreterTest:
     MyInterpreter类的测试桩
     '''
 
-    def test_goodDSL(self):
+    def testGoodDSL(self):
         '''
         简单的DSL脚本
         自动测试
@@ -201,7 +221,7 @@ class MyInterpreterTest:
         interpreter.reset(funcVar)
         interpreter.run()
 
-    def test_strongDSL(self,manual=False):
+    def testStrongDSL(self,manual=False):
         '''
         DSL强测试
         默认自动输入
@@ -211,7 +231,7 @@ class MyInterpreterTest:
         config.load('./testdata/strongTest.yaml')
         funcVar=MyFuncVar('test2',config,timeout=manual)
         interpreter=MyInterpreter(config)
-        interpreter.restart(funcVar)
+        interpreter.reset(funcVar)
         # while interpreter.getStatus():
         if not manual:
             print('auto mode')
@@ -233,10 +253,10 @@ class MyInterpreterTest:
             print('manual mode')
             interpreter.run()
 
-    def test_list(self,manual=False):
-        self.test_goodDSL()
+    def testList(self,manual=False):
+        self.testGoodDSL()
         print('-----------')
-        self.test_strongDSL(manual)
+        self.testStrongDSL(manual)
 
 if __name__=='__main__':
     '''
@@ -246,27 +266,27 @@ if __name__=='__main__':
     print('Test for MYConfigLoader...')
     print("----------------------------")
     test=MyConfigLoaderTest()
-    test.test_list()
+    test.testList()
     print("----------------------------")
     print('Test for MyLexer...')
     print("----------------------------")
     test=MyLexerTest()
-    test.test_list()
+    test.testList()
     print("----------------------------")
     print('Test for MyParser...')
     print("----------------------------")
     test=MyParserTest()
-    test.test_list()
+    test.testList()
     print("----------------------------")
     print('Test for MyFuncVar...')
     print("----------------------------")
     test=MyFuncVarTest()
-    test.test_list()
+    test.testList()
     print('Test passed....')
     print("----------------------------")
     print('Test for MyInterpreter...')
     print("----------------------------")
     test=MyInterpreterTest()
-    test.test_list(manual)
+    test.testList(manual)
     print('Test passed....')
     print("----------------------------")

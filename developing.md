@@ -50,7 +50,7 @@ interpreter模块中调用parser模块完成初始化，实现客服脚本的分
 ```
 silence通过 case '' action实现
 ### 符号
-var STR INT
+var STR
 ### 语法
 ```
 script  : stepblock
@@ -66,7 +66,7 @@ statement   : action
 
 action  : VAR '=' expression
         | 'speak' expression
-        | 'listen' expr expr
+        | 'listen' expr
         | 'stepto' stepname
         | 'exit'
         | 'call' filename args
