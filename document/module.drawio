@@ -1,0 +1,88 @@
+<mxfile host="app.diagrams.net" modified="2023-12-13T02:44:18.922Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36 Edg/119.0.0.0" etag="QwCSDT-wwkddCQ0ZGfnl" version="22.1.8" type="device">
+  <diagram name="第 1 页" id="BUg-VdGNCutFPjloUPW8">
+    <mxGraphModel dx="828" dy="509" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="iRGmr-u93E_VpI6-3npq-1" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="20" y="40" width="300" height="380" as="geometry" />
+        </mxCell>
+        <mxCell id="iRGmr-u93E_VpI6-3npq-2" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="85" width="290" height="290" as="geometry" />
+        </mxCell>
+        <mxCell id="iRGmr-u93E_VpI6-3npq-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="iRGmr-u93E_VpI6-3npq-3" target="iRGmr-u93E_VpI6-3npq-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="iRGmr-u93E_VpI6-3npq-3" value="DSL脚本" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="110" y="90" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="iRGmr-u93E_VpI6-3npq-4" value="静态分析" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="115" y="50" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="iRGmr-u93E_VpI6-3npq-5" value="动态分析" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="615" y="105" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="iRGmr-u93E_VpI6-3npq-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="iRGmr-u93E_VpI6-3npq-6" target="iRGmr-u93E_VpI6-3npq-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="iRGmr-u93E_VpI6-3npq-6" value="MyLexer词法分析" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="110" y="170" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="iRGmr-u93E_VpI6-3npq-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="iRGmr-u93E_VpI6-3npq-7" target="iRGmr-u93E_VpI6-3npq-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="iRGmr-u93E_VpI6-3npq-7" value="MyParser语法分析" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="110" y="250" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="iRGmr-u93E_VpI6-3npq-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="iRGmr-u93E_VpI6-3npq-10" target="iRGmr-u93E_VpI6-3npq-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="iRGmr-u93E_VpI6-3npq-10" value="MyASTNode&lt;br&gt;语法树结点&lt;br&gt;&amp;lt;数据结构&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="110" y="340" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="iRGmr-u93E_VpI6-3npq-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="iRGmr-u93E_VpI6-3npq-13" target="iRGmr-u93E_VpI6-3npq-17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="iRGmr-u93E_VpI6-3npq-13" value="语法分析树" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="353" y="200" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="iRGmr-u93E_VpI6-3npq-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="iRGmr-u93E_VpI6-3npq-16" target="iRGmr-u93E_VpI6-3npq-17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="iRGmr-u93E_VpI6-3npq-16" value="MyFuncVar&lt;br&gt;关键词实现函数&lt;br&gt;和变量名管理&lt;br&gt;&amp;lt;数据结构&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="585" y="140" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="iRGmr-u93E_VpI6-3npq-17" value="MyInterpreter&lt;br&gt;脚本执行器" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="585" y="220" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="iRGmr-u93E_VpI6-3npq-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="iRGmr-u93E_VpI6-3npq-20" target="iRGmr-u93E_VpI6-3npq-17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="iRGmr-u93E_VpI6-3npq-20" value="Extended.py" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="585" y="300" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="iRGmr-u93E_VpI6-3npq-32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="iRGmr-u93E_VpI6-3npq-28" target="iRGmr-u93E_VpI6-3npq-30">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="iRGmr-u93E_VpI6-3npq-28" value="外部IO" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="840" y="220" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="iRGmr-u93E_VpI6-3npq-31" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="iRGmr-u93E_VpI6-3npq-29" target="iRGmr-u93E_VpI6-3npq-28">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="iRGmr-u93E_VpI6-3npq-29" value="命令行输入" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1010" y="150" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="iRGmr-u93E_VpI6-3npq-30" value="命令行输出" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1010" y="290" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="iRGmr-u93E_VpI6-3npq-34" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="iRGmr-u93E_VpI6-3npq-17" target="iRGmr-u93E_VpI6-3npq-28">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="670" y="310" as="sourcePoint" />
+            <mxPoint x="720" y="260" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
