@@ -1,4 +1,7 @@
 class MyASTNode:
+    '''
+    语法分析树结点
+    '''
     def __init__(self,type,*childs):
         self.type=type
         self.childs=list(childs)

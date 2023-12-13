@@ -9,6 +9,12 @@ from logging import getLogger
 logrecord=getLogger('Interpreter')
 
 class MyInterpreter:
+    '''
+    脚本执行器
+    分析语法树，并执行
+    基本关键词调用和符号表由FuncVar管理
+    脚本递归调用过程和分析的递归调用过程一致，不需要特别用数据结构管理
+    '''
 
     script=''
     astTree=None

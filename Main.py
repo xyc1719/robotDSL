@@ -1,11 +1,12 @@
 from lib import Interpreter
 import logging
-
+'''
+    主程序，循环调用脚本直到退出
+'''
 logging.basicConfig(
     level=logging.DEBUG,
     format='%(levelname)s: [%(name)s] %(message)s'
 )
-#启动时欢迎界面,ascii艺术
 def greeting():
     '''
     启动界面
@@ -20,6 +21,11 @@ def greeting():
     print(picture)
 
 def initializing():
+    '''
+    初始化执行环境
+    修改yaml配置和配置中对应文件的内容实现不同功能
+    :return:
+    '''
     config= Interpreter.MyConfigLoader()
     config.load('./config.yaml')
     funcVar= Interpreter.MyFuncVar('007', config)

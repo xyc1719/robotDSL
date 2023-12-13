@@ -6,10 +6,16 @@ from lib.ConfigYamlLoader import MyConfigLoader
 logrecord=getLogger('FuncVar')
 
 class MyFuncVar:
+    '''
+    提供关键词的实现和符号表的管理
+    listen输入存放在$inputBuffer中
+    call调用扩展函数的返回值存放在$ret中
+    '''
 
     varTable={
         'inputBuffer':'',
-        '_robotID':''
+        '_robotID':'',
+        'ret':''
     }
     def __init__(self,robotID,configLoader:MyConfigLoader,timeout=True):
         logrecord.info('Initializing Running Environment...')
